@@ -23,6 +23,9 @@ function onSubmit(evt) {
             document.getElementById('drop_box').style.display = "none";
             document.getElementById('loading').style.display = "none";
             document.getElementById('browse').style.display = "none";
+            
+            // display information now
+            displayInfo(e.target.response);
         }
     };
     xhr.open('post', "upload_pdf", true);
@@ -45,6 +48,17 @@ function dropWrap(evt) {
     evt.target.files = [];
     evt.target.files.push(file);
     changeText(evt);
+}
+
+function displayInfo(response) {
+    var sum = document.getElementById('summary');
+    var stat = document.getElementById('stats');
+    
+    var jsonObj = JSON.parse(response);
+    
+    sum.innerHTML += "Summary: \n\n<small>" + jsonObj['LsaSummary'] + "</small>" + "\n\n\n";
+    
+    console.log(jsonObj);
 }
 
 document.getElementById('files').addEventListener('change', changeText, false);
