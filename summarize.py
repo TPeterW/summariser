@@ -31,8 +31,12 @@ for sentence in summary:
 summarizer = LexRankSummarizer()
 summary = summarizer(parser.document, num_sentences) #Summarize the document with 5 sentences
 
+wordCount = 0
+
 for sentence in summary:
-    results["LexRankSummary"] += str(sentence) + "\n"\
+    results["LexRankSummary"] += str(sentence) + "\n"
+    for word in sentence.words:
+        wordCount += 1
 
 Rake = RAKE.Rake("SmartStoplist.txt")
 keywords = Rake.run(results["LexRankSummary"] + results["LsaSummary"])
@@ -43,5 +47,7 @@ for i in range(3):
     results["keywords"].append(keywords[i][0])
 
 results["wikiLinks"] = crawl.get_urls(results["keywords"])
+
+results["wordCount"] = wordCount
 
 print json.dumps(results)
