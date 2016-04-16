@@ -22,13 +22,13 @@ summarizer = LsaSummarizer()
 summary = summarizer(parser.document, num_sentences)
 
 for sentence in summary:
-    results["LsaSummary"] += str(sentence)
+    results["LsaSummary"] += str(sentence) + "\n"
 
 # LEX RANK SUMMARY.
 summarizer = LexRankSummarizer()
 summary = summarizer(parser.document, num_sentences) #Summarize the document with 5 sentences
 
 for sentence in summary:
-    results["LexRankSummary"] += str(sentence)
+    results["LexRankSummary"] += str(sentence) + "\n"
 
 print json.dumps(results)
