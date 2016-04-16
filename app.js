@@ -33,7 +33,7 @@ app.use(express.static(__dirname + '/views/static'));
 
 app.use("/",router);
 
-app.post("/upload_pdf",upload.single('pdf'),function(req,res){
+app.post("/upload_pdf", upload.single('pdf'), function(req,res){
 
   // PythonShell.run('convert.py', function (err) {
   //   if (err) throw err;
@@ -93,9 +93,3 @@ app.use("*",function(req,res){
 app.listen(3000,function(){
   console.log("Live at Port 3000");
 });
-
-
-
-/*
-
-*/
