@@ -30,7 +30,7 @@ function handleFileSelect(evt) {
         f = evt.target.files[0];
         reader.readAsDataURL(f);
     } else {
-        reader.onloadend(evt);
+        reader.onloadend(evt.target.files[0]);
     }
 }
 
