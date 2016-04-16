@@ -50,12 +50,10 @@ app.post("/upload_pdf/",function(req,res){
       // results is an array consisting of messages collected during execution
       var text = results.join("\n");
       var tmpobj = tmp.fileSync();
-      // console.log("File: ", tmpobj.name);
-      // console.log("Filedescriptor: ", tmpobj.fd);
+
       var filename = tmpobj.name;
       fs.writeFile(filename, text, function(err) {
         if(err) throw err
-        //rename
         var summarizeOptions = {
           mode: 'text',
           args: [filename, num_sentences]
@@ -63,15 +61,9 @@ app.post("/upload_pdf/",function(req,res){
 
         PythonShell.run('summarize.py', summarizeOptions, function (err, results) {
           if (err) throw err;
-          var summaryString = results.join("\n");
-          var summary = {
-            "summary":summaryString
-          };
+          var summary = JSON.parse(results[0]);
+          summary["text"] = text;
           res.send(summary);
-          //string
-          //turn into json
-          //respond to req
-          //res.send json object
         });
       });
     });

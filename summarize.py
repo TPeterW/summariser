@@ -1,7 +1,9 @@
 #Import library essentials
+import json
 from sumy.parsers.plaintext import PlaintextParser #We're choosing a plaintext parser here, other parsers available for HTML etc.
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer #We're choosing Lexrank, other algorithms are also built in
+from sumy.summarizers.lsa import LsaSummarizer
 from unidecode import unidecode
 import sys
 
@@ -12,9 +14,21 @@ file_name = sys.argv[1] #name of the plain-text file
 num_sentences = int(sys.argv[2])
 
 parser = PlaintextParser.from_file(file_name, Tokenizer("english"))
-summarizer = LexRankSummarizer()
 
+results = {"LsaSummary":"", "LexRankSummary":""};
+
+# LSA SUMMARY
+summarizer = LsaSummarizer()
+summary = summarizer(parser.document, num_sentences)
+
+for sentence in summary:
+    results["LsaSummary"] += str(sentence)
+
+# LEX RANK SUMMARY.
+summarizer = LexRankSummarizer()
 summary = summarizer(parser.document, num_sentences) #Summarize the document with 5 sentences
 
 for sentence in summary:
-    print sentence
+    results["LexRankSummary"] += str(sentence)
+
+print json.dumps(results)
