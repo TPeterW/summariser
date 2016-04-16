@@ -4,23 +4,30 @@ function changeText(evt) {
 }
 
 function onSubmit(evt) {
+    // Turn on animation
+    document.getElementById('drop_zone').style.display = "none";
+    document.getElementById('loading').style.display = "flex";
+    
+    var file = evt.target.files[0];
+    var xhr = new XMLHttpRequest();
+    var formData = new FormData();
 
-
-  var file =  evt.target.files[0];
-  var xhr = new XMLHttpRequest();
-  var formData = new FormData();
-
-  xhr.addEventListener("onload",function(res){
-  });
-  xhr.onreadystatechange = function(e) {
-                if ( 4 == this.readyState ) {
-                    console.log(['xhr upload complete', e]);
-                    console.log(e.srcElement.response);
-                }
-            };
-  xhr.open('post', "upload_pdf", true);
-  formData.append("pdf", file);
-  xhr.send(formData);
+    xhr.addEventListener("onload",function(res){
+        
+    });
+    
+    xhr.onreadystatechange = function(e) {
+        if ( 4 == this.readyState ) {
+            console.log(['xhr upload complete', e]);
+            console.log(e.target.response);
+            document.getElementById('drop_box').style.display = "none";
+            document.getElementById('loading').style.display = "none";
+            document.getElementById('browse').style.display = "none";
+        }
+    };
+    xhr.open('post', "upload_pdf", true);
+    formData.append("pdf", file);
+    xhr.send(formData);
 }
 
 function handleDragOver(evt) {
@@ -41,8 +48,6 @@ function dropWrap(evt) {
 }
 
 document.getElementById('files').addEventListener('change', changeText, false);
-var upload = document.getElementById('upload');
-upload.addEventListener('click', onSubmit, true);
 
 var dropZone = document.getElementById('drop_zone');
 dropZone.addEventListener('dragover', handleDragOver, false);
@@ -50,8 +55,6 @@ dropZone.addEventListener('drop', dropWrap, false);
 
 $(function() {
     $('form[name=pdf]').submit(function() {
-        //alert("Happening...");
-
         onSubmit();
         return false;
     });
