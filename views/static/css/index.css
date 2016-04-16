@@ -108,6 +108,11 @@ div.container {
     width: 58%;
 }
 
-.summary {
-    
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: auto;
+    background-color: #f5f5f5;
 }
