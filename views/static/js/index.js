@@ -56,7 +56,9 @@ function displayInfo(response) {
     
     var jsonObj = JSON.parse(response);
     
-    sum.innerHTML += "Summary: \n\n<small>" + jsonObj['LsaSummary'] + "</small>" + "\n\n\n";
+    sum.innerHTML += "Summary: \n\n<small>" + jsonObj['LsaSummary'] + "</small>\n\n\n";
+    
+    stat.innerHTML += "Word Count: <small>" + jsonObj['wordCount'] + "</small>\n\n\n";
     
     console.log(jsonObj);
 }
