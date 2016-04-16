@@ -37,7 +37,7 @@ app.post("/upload_pdf/",function(req,res){
   //     });
   // });
 
-  console.log(req.body);
+  console.log(req.pdf);
 
     var options = {
       mode: 'text',

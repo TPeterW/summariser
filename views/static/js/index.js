@@ -2,7 +2,9 @@ function handleFileSelect(evt) {
     var f;
     var reader = new FileReader();
     
-    document.getElementById("file-info").innerHTML=evt.target.files[0].name;
+    var file = evt.target.files[0];
+    
+    document.getElementById("file-info").innerHTML=file.name;
     
     reader.onloadend = function(file) {
         
@@ -20,19 +22,20 @@ function handleFileSelect(evt) {
         request.open(method, url, true);
         request.setRequestHeader("Content-Type", "application/pdf;charset=UTF-8");
         
-        console.log(file);
+        console.log(evt.target.files[0]);
         
-        request.send(file);
+//        request.send({'body':evt.target.files[0]});
+        request.send({pdf:evt.target.files[0]});
         
     };
     
     if (evt.stopPropagation) {
         evt.stopPropagation();
         evt.preventDefault();
-        f = evt.target.files[0];
+        f = file;
         reader.readAsDataURL(f);
     } else {
-        reader.onloadend(evt.target.files[0]);
+        reader.onloadend(evt);
     }
 }
 
