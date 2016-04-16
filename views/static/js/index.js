@@ -65,7 +65,11 @@ function displayInfo(response) {
     console.log("links: " + links);
     console.log("keywords: " + jsonObj['keywords']);
     
-    console.log(jsonObj);
+    jsonObj.keywords.forEach(function(keyword) {
+        stat.innerHTML += "<div class=\"panel panel-default\"><div class=\"panel-heading\">" + keyword + "</div><div class=\"panel-body\"><p>" + links[keyword] + "</p></div></div><br><br>";
+    })
+    
+//    console.log(jsonObj);
 }
 
 document.getElementById('files').addEventListener('change', changeText, false);
