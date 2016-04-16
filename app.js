@@ -48,7 +48,7 @@ app.post("/upload_pdf", upload.single('pdf'), function(req,res){
   //     });
   // });
 
-  console.log(req);
+  console.log(req.file);
 
     var options = {
       mode: 'text',
