@@ -16,6 +16,8 @@ router.get("/",function(req,res){
   res.sendFile(path + "index.html");
 });
 
+app.use(express.static(__dirname + '/views/static'));
+
 app.use("/",router);
 
 app.post("/upload_pdf/",function(req,res){
