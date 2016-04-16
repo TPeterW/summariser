@@ -26,7 +26,6 @@ app.post("/upload_pdf/",function(req,res){
   //   console.log('finished');
   // });
 
-
   fs.readFile(req.files.pdf.path, function (err, data) {
     // ...
     var newPath = __dirname + "pdfs/";

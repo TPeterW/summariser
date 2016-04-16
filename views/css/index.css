@@ -1,8 +1,13 @@
+* {
+    font-family: 'Raleway', monospace;
+}
+
 .drop {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
 }
+
 #drop_zone {
     border: 2px dashed #bbb;
     -moz-border-radius: 5px;
@@ -13,6 +18,7 @@
     font: 20pt bold 'Vollkorn';
     color: #bbb;
     border-radius: 15px;
+    font-family: 'Raleway', monospace;
 }
 
 body {
