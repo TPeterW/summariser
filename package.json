@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "express": "latest",
-    "multer": "^1.1.0"
+    "multer": "^1.1.0",
+    "python-shell": "latest",
+    "express": "latest"
   }
 }
