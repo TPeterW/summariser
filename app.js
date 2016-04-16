@@ -5,6 +5,7 @@ var path = __dirname + '/views/';
 // var pdfUtil = require('pdf-to-text');
 var pdf_path = __dirname +"/pdfs/";
 var PythonShell = require('python-shell');
+const fs = require('fs');
 
 
 router.use(function (req,res,next) {
@@ -26,6 +27,14 @@ app.post("/upload_pdf/",function(req,res){
   //   if (err) throw err;
   //   console.log('finished');
   // });
+
+  fs.readFile(req.files.pdf.path, function (err, data) {
+    // ...
+    var newPath = __dirname + "pdfs/";
+    fs.writeFile(newPath, data, function (err) {
+      //res.redirect("back");
+      });
+  });
 
 
     var options = {
