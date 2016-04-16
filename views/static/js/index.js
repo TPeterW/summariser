@@ -51,6 +51,8 @@ function dropWrap(evt) {
 }
 
 function displayInfo(response) {
+    document.getElementById('statistics').style.display = "";
+    
     var sum = document.getElementById('summary');
     var stat = document.getElementById('stats');
     
@@ -60,16 +62,13 @@ function displayInfo(response) {
     
     stat.innerHTML += "<div class=\"panel panel-default\"><div class=\"panel-heading\">Word Count</div><div class=\"panel-body\"><p>" + jsonObj['wordCount'] + "</p></div></div><br><br>";
     
-//    stat.innerHTML += "Links: " + jsonObj['wikiLinks'] + "<br><br>";
     var links = jsonObj['wikiLinks'];
     console.log("links: " + links);
     console.log("keywords: " + jsonObj['keywords']);
     
     jsonObj.keywords.forEach(function(keyword) {
-        stat.innerHTML += "<div class=\"panel panel-default\"><div class=\"panel-heading\">" + keyword + "</div><div class=\"panel-body\"><p>" + links[keyword] + "</p></div></div><br><br>";
+        stat.innerHTML += "<div class=\"panel panel-default\"><div class=\"panel-heading\">" + keyword + "</div><div class=\"panel-body\"><p><a href=\"" + links[keyword] + "\">" + links[keyword] + "</a></p></div></div><br><br>";
     })
-    
-//    console.log(jsonObj);
 }
 
 document.getElementById('files').addEventListener('change', changeText, false);
