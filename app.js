@@ -5,8 +5,9 @@ var path = __dirname + '/views/';
 // var pdfUtil = require('pdf-to-text');
 var pdf_path = __dirname +"/pdfs/";
 var PythonShell = require('python-shell');
+var tmp = require('tmp');
 const fs = require('fs');
-var num_sentences;
+var num_sentences = 10;
 
 
 router.use(function (req,res,next) {
@@ -29,26 +30,29 @@ app.post("/upload_pdf/",function(req,res){
   //   console.log('finished');
   // });
 
-  fs.readFile(req.files.pdf.path, function (err, data) {
-    // ...
-    var newPath = __dirname + "pdfs/";
-    fs.writeFile(newPath, data, function (err) {
-      //res.redirect("back");
-      });
-  });
+  // fs.readFile(req.files.pdf.path, function (err, data) {
+  //   // ...
+  //   var newPath = __dirname + "pdfs/";
+  //   fs.writeFile(newPath, data, function (err) {
+  //     //res.redirect("back");
+  //     });
+  // });
+
 
 
     var options = {
       mode: 'text',
-      args: [req.body.fname]
+      args: ["pdfs/Playing_with_Fire.pdf"]
     };
 
     PythonShell.run('convert.py', options, function (err, results) {
       if (err) throw err;
       // results is an array consisting of messages collected during execution
       var text = results.join("\n");
-      var filepath = "/docs/" + "test"
-      debugger;
+      var tmpobj = tmp.fileSync();
+      // console.log("File: ", tmpobj.name);
+      // console.log("Filedescriptor: ", tmpobj.fd);
+      var filename = tmpobj.name;
       fs.writeFile(filename, text, function(err) {
         if(err) throw err
         //rename
@@ -59,6 +63,11 @@ app.post("/upload_pdf/",function(req,res){
 
         PythonShell.run('summarize.py', summarizeOptions, function (err, results) {
           if (err) throw err;
+          var summaryString = results.join("\n");
+          var summary = {
+            "summary":summaryString
+          };
+          res.send(summary);
           //string
           //turn into json
           //respond to req
