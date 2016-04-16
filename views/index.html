@@ -46,17 +46,23 @@
     <!--And below is not-->
     <div class="text-center" height="800px" style="display:inline-block; width: 90%;">
         <div class="drop" width="80%">
-            <div id="drop_zone" names="files">Drop files here</div>
+            <div id="drop_zone">Drop files here</div>
         </div>
         
-        <div style="text-align:center; margin-top:5px;">
+        <form style="margin-top:5px;" action="/upload_pdf" method="post" enctype="multipart/form-data" name="pdf">
             <span class="btn btn-default btn-file">
-                Browse... <input type="file" id="files" name="files">
+                Browse... <input type="file" id="files" name="pdf">
             </span>
             <div style="display:inline-block" id="file-info"></div>
-        </div>
+            <input id="upload" class="btn btn-primary btn-file" type="submit" value="Upload">
+        </form>
     
-    </div><br>
+    </div>
+    
+    
+    
+    
+    <br>
     
     
     
