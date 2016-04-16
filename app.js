@@ -6,6 +6,7 @@ var path = __dirname + '/views/';
 var pdf_path = __dirname +"/pdfs/";
 var PythonShell = require('python-shell');
 const fs = require('fs');
+var num_sentences;
 
 
 router.use(function (req,res,next) {
@@ -43,10 +44,25 @@ app.post("/upload_pdf/",function(req,res){
     PythonShell.run('convert.py', options, function (err, results) {
       if (err) throw err;
       // results is an array consisting of messages collected during execution
-      var text = results[0];
-      ///Pass text to the next python script
+      var text = results.join("\n");
+      var filepath = "/docs/" + "test"
+      debugger;
+      fs.writeFile(filename, text, function(err) {
+        if(err) throw err
+        //rename
+        var summarizeOptions = {
+          mode: 'text',
+          args: [filename, num_sentences]
+        };
 
-
+        PythonShell.run('summarize.py', summarizeOptions, function (err, results) {
+          if (err) throw err;
+          //string
+          //turn into json
+          //respond to req
+          //res.send json object
+        });
+      });
     });
   //pyshell.run();
 });
