@@ -58,7 +58,12 @@ function displayInfo(response) {
     
     sum.innerHTML += "Summary: \n\n<small>" + jsonObj['LsaSummary'] + "</small>\n\n\n";
     
-    stat.innerHTML += "Word Count: <small>" + jsonObj['wordCount'] + "</small>\n\n\n";
+    stat.innerHTML += "<div class=\"panel panel-default\"><div class=\"panel-heading\">Word Count</div><div class=\"panel-body\"><p>" + jsonObj['wordCount'] + "</p></div></div><br><br>";
+    
+//    stat.innerHTML += "Links: " + jsonObj['wikiLinks'] + "<br><br>";
+    var links = jsonObj['wikiLinks'];
+    console.log("links: " + links);
+    console.log("keywords: " + jsonObj['keywords']);
     
     console.log(jsonObj);
 }
