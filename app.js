@@ -13,7 +13,7 @@ router.use(function (req,res,next) {
 });
 
 router.get("/",function(req,res){
-  res.sendFile(path + "home.html");
+  res.sendFile(path + "index.html");
 });
 
 app.use("/",router);
@@ -24,7 +24,7 @@ app.post("/upload_pdf/",function(req,res){
   //   if (err) throw err;
   //   console.log('finished');
   // });
-    
+
 
     var options = {
       mode: 'text',
