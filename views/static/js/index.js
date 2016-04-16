@@ -67,7 +67,7 @@ function displayInfo(response) {
     console.log("keywords: " + jsonObj['keywords']);
     
     jsonObj.keywords.forEach(function(keyword) {
-        stat.innerHTML += "<div class=\"panel panel-default\"><div class=\"panel-heading\">" + keyword + "</div><div class=\"panel-body\"><p><a href=\"" + links[keyword] + "\">" + links[keyword] + "</a></p></div></div><br><br>";
+        stat.innerHTML += "<div class=\"panel panel-default\"><div class=\"panel-heading\">" + keyword + "</div><div class=\"panel-body\"><p><a href=\"" + links[keyword] + "\" target=\"_blank\">" + links[keyword] + "</a></p></div></div><br><br>";
     })
 }
 
