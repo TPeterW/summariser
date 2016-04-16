@@ -72,7 +72,7 @@ body {
     width: 160px;
 }
 
-// loader CSS
+/* loader CSS */
 svg#loader-pencil {
     fill: #3a846e;
     width: 80px;
@@ -89,4 +89,25 @@ svg#loader-pencil {
     100% {
         transform: translateY(-150px);
     }
+}
+
+/* display */
+div.container {
+    margin-top: 10px;
+}
+
+.column-right {
+    float: right;
+    margin-top: inherit;
+    width: 38%;
+}
+
+.column-left {
+    float: left;
+    margin-top: inherit;
+    width: 58%;
+}
+
+.summary {
+    
 }
