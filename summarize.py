@@ -18,6 +18,13 @@ num_sentences = int(sys.argv[2])
 
 parser = PlaintextParser.from_file(file_name, Tokenizer("english"))
 
+wordCount = 0
+
+for paragraph in parser.document.paragraphs:
+    for sentence in paragraph.sentences:
+        for word in sentence.words:
+            wordCount += 1
+
 results = {"LsaSummary":"", "LexRankSummary":""};
 
 # LSA SUMMARY
@@ -31,12 +38,8 @@ for sentence in summary:
 summarizer = LexRankSummarizer()
 summary = summarizer(parser.document, num_sentences) #Summarize the document with 5 sentences
 
-wordCount = 0
-
 for sentence in summary:
     results["LexRankSummary"] += str(sentence) + "\n"
-    for word in sentence.words:
-        wordCount += 1
 
 Rake = RAKE.Rake("SmartStoplist.txt")
 keywords = Rake.run(results["LexRankSummary"] + results["LsaSummary"])
