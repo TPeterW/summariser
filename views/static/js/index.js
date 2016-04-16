@@ -4,7 +4,7 @@ function handleFileSelect(evt) {
     
     document.getElementById("file-info").innerHTML=evt.target.files[0].name;
     
-    reader.onloadend = (function(file) {
+    reader.onloadend = function(file) {
         
         var url = "/upload_pdf/",
             method = "POST",
@@ -20,9 +20,11 @@ function handleFileSelect(evt) {
         request.open(method, url, true);
         request.setRequestHeader("Content-Type", "application/pdf;charset=UTF-8");
         
+        console.log(file);
+        
         request.send(file);
         
-    }) (f);
+    };
     
     if (evt.stopPropagation) {
         evt.stopPropagation();
