@@ -1,12 +1,13 @@
 {
-  "name" : "summariser",
-  "version" : "0.0.1",
-  "repository" : "https://github.com/joeybutton/summariser.git",
-  "license" : "GPL-2.0",
-  "scripts" : {
-    "start" : "node app.js"
+  "name": "summariser",
+  "version": "0.0.1",
+  "repository": "https://github.com/joeybutton/summariser.git",
+  "license": "GPL-2.0",
+  "scripts": {
+    "start": "node app.js"
   },
-  "dependencies" : {
-    "express" : "latest"
+  "dependencies": {
+    "express": "latest",
+    "multer": "^1.1.0"
   }
 }
