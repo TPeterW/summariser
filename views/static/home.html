@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Summariser</title>
+      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+      <!-- Link to css file. -->
+      <link rel="stylesheet" type="text/css" href="home.css">
+  </head>
+  <body>
+    <div id="title">
+      <h1>Automatic Text Summariser</h1>
+    </div>
+
+    <!-- Create html for csv input. -->
+    <div id="inputDiv">
+      <div id="inputText">
+        <p>Drag files here...</p>
+      </div>
+    </div>
+
+    <!-- Divide page into columns to position items. -->
+    <div class="container">
+
+
+        <!-- LEFT COLUMN -->
+       <div class="column-left">
+
+         <div class="displayStyle" style="height:400px">
+           <div style="height:100%;width:100%;font:16px/26px Georgia, Garamond, Serif;overflow:auto;"> <p>Text summary</p>
+</div>
+         </table>
+       </div>
+
+       </div>
+
+        <!-- RIGHT COLUMN -->
+       <div class="column-right">
+
+         <div id="visDiv"></div>
+         <div class="displayStyle"  style="height:400px">
+           <div style="height:100%;width:100%;font:16px/26px Georgia, Garamond, Serif;overflow:auto;"> <p>Text stats</p>
+
+           </div>
+
+
+         </div>
+
+       </div>
+    </div>
+
+
+
+
+    <script>
+    /*
+    var width = 400;
+    var height = 300;
+
+    var margins = {top:0, bottom: 60, left: 60, right:0};
+
+
+    var chartWidth = width - margins.left - margins.right;
+    var chartHeight = height - margins.top - margins.bottom;
+
+    var xScale = d3.scale.ordinal().rangeRoundBands([0, chartWidth], 0.1);
+    var yScale = d3.scale.linear().range([chartHeight, 0]);
+    var colorScale = d3.scale.linear().range(["grey", "red"]);
+
+    d3.csv("http://www.cs.middlebury.edu/~candrews/classes/infovis/data/drwho.csv", function(dataset){
+      console.log(dataset);
+
+      xScale.domain(dataset.map(function(d){return d.doctor;}));
+      yScale.domain([0, d3.max(dataset, function(d){return +d.duration;})]);
+      colorScale.domain([0, d3.max(dataset, function(d){return +d.episodes;})]);
+
+
+      var svg = d3.select('body')
+        .append('svg')
+        .attr({width:width, height:height});
+
+
+      var chart = svg.append("g")
+        .attr("transform","translate(" + height + ", " + margins.left + ") rotate(90)");
+
+      chart.selectAll('rect')
+        .data(dataset)
+        .enter()
+        .append('rect')
+        .attr({x: function(d){return xScale(d.doctor);},
+                y: function(d){return yScale(+d.duration);},
+              width: xScale.rangeBand(),
+              height: function(d){return chartHeight  - yScale(+d.duration)}})
+        .style("fill", function(d){ return colorScale(+d.episodes); });
+
+
+
+        // Note that we are just appending the label onto the end of the axis
+        // an advantage of this is that they share the new origin for transformed
+        // axes
+      var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient("bottom");
+
+
+      chart.append("g")
+        .attr("class","axis")
+        .attr("transform", "translate(0, " + chartHeight+")")
+        .call(xAxis)
+        .append("text")
+        .attr({
+          "x":chartWidth/2,
+          "y":margins.bottom/2,
+          "text-anchor":"middle" // set so the (x,y) of the text is in the middle bottom
+        })
+        .text("Doctor");
+
+        var yAxis = d3.svg.axis()
+          .scale(yScale)
+          .orient("left");
+
+          // for the y axis, we need to rotate the text
+          // the x and y are with respect to the rotated origin...
+        chart.append("g")
+          .attr("class","axis")
+          .call(yAxis)
+          .append("text")
+          .attr({
+            "x":-chartHeight/2,
+            "y":3 * -margins.left/4,
+            "text-anchor":"middle",
+            "transform" : "rotate(-90)"
+          })
+          .text("Count");
+
+
+    });
+*/
+    </script>
+  </body>
+</html>
