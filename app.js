@@ -29,18 +29,19 @@ app.post("/upload_pdf/",function(req,res){
   //   console.log('finished');
   // });
 
-  fs.readFile(req.files.pdf.path, function (err, data) {
-    // ...
-    var newPath = __dirname + "pdfs/";
-    fs.writeFile(newPath, data, function (err) {
-      //res.redirect("back");
-      });
-  });
+  // fs.readFile(req.files.pdf.path, function (err, data) {
+  //   // ...
+  //   var newPath = __dirname + "pdfs/";
+  //   fs.writeFile(newPath, data, function (err) {
+  //     //res.redirect("back");
+  //     });
+  // });
 
+  console.log(req.body);
 
     var options = {
       mode: 'text',
-      args: [req.body.fname]
+      args: []
     };
 
     PythonShell.run('convert.py', options, function (err, results) {
